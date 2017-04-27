@@ -25,6 +25,7 @@ bool MainLoop(bool runApp)
 	GenerateSample();
 	runApp = CheckText();
 	ArrayVsList();
+	ArrayVsListCustomContainers();
 	FindVsIterateMap();
 	return runApp;
 }
@@ -63,6 +64,21 @@ bool ArrayVsList()
 
 	return false;
 }
+
+bool ArrayVsListCustomContainers()
+{
+	BROFILER_CATEGORY("ArrayVsListCustomContainers", Profiler::Color::DarkMagenta);
+	p2List<int> listSample;
+	p2DynArray<int> vectorCustom;
+
+	FillCustomList(&listSample, SAMPLING_SIZE);
+	FillCustomVector(&vectorCustom, SAMPLING_SIZE);
+	IterateCustomList(&listSample);
+	IterateCustomVector(&vectorCustom, SAMPLING_SIZE);
+
+	return false;
+}
+
 
 void FillArray(int * arraySample, int size)
 {
@@ -121,6 +137,40 @@ void IterateVectorIterator(std::vector<int>* vectorSample, int size)
 		int a = (*i);
 	}
 }
+
+void FillCustomVector(p2DynArray<int>* vector, int size)
+{
+	BROFILER_CATEGORY("FillCustomVector", Profiler::Color::HoneyDew);
+	for (int i = 0; i < size; i++)
+	{
+		vector->PushBack(i);
+	}
+}
+void FillCustomList(p2List<int>* list, int size)
+{
+	BROFILER_CATEGORY("FillCustomList", Profiler::Color::LightSalmon);
+	for (int i = 0; i < size; i++)
+	{
+		list->add(i);
+	}
+}
+void IterateCustomVector(p2DynArray<int>* vector, int size)
+{
+	BROFILER_CATEGORY("IterateCustomVector", Profiler::Color::FireBrick);
+	for (int i = 0; i < size; ++i)
+	{
+		int a = (*vector)[i];
+	}
+}
+void IterateCustomList(p2List<int>* list)
+{
+	BROFILER_CATEGORY("IterateCustomList", Profiler::Color::Ivory);
+	for (p2List_item<int>* it = list->start; it != list->end; it = it->next)
+	{
+		int a = it->data;
+	}
+}
+
 void FindVsIterateMap()
 {
 	BROFILER_CATEGORY("FindVsIterate", Profiler::Color::AliceBlue);

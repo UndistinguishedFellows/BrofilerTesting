@@ -114,6 +114,10 @@
     <ClCompile Include="TestingFunctions.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="p2Defs.h" />
+    <ClInclude Include="p2DynArray.h" />
+    <ClInclude Include="p2List.h" />
+    <ClInclude Include="p2SString.h" />
     <ClInclude Include="TestingFunctions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
