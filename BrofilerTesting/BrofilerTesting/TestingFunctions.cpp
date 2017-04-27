@@ -3,6 +3,7 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
 
 #include "Brofiler\Brofiler.h"
 
@@ -34,11 +35,12 @@ bool CheckText()
 bool ArrayVsList()
 {
 	BROFILER_CATEGORY("ArrayVsList", Profiler::Color::Purple);
-	int arraySample[500];
+	int arraySample[5000];
 	std::list<int> listSample;
-	FillArray(arraySample, 500);
-	FillList(&listSample, 500);
-
+	std::vector<int> vectorSample;
+	FillArray(arraySample, 5000);
+	FillList(&listSample, 5000);
+	FillVector(&vectorSample, 5000);
 	return false;
 }
 
@@ -56,5 +58,13 @@ void FillList(std::list<int> * listSample, int size)
 	for (int i = 0; i < size; i++)
 	{
 		listSample->push_back(i);
+	}
+}
+void FillVector(std::vector<int> * vectorSample, int size)
+{
+	BROFILER_CATEGORY("FillVector", Profiler::Color::FireBrick);
+	for (int i = 0; i < size; i++)
+	{
+		vectorSample->push_back(i);
 	}
 }
