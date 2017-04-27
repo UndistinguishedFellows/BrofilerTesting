@@ -35,12 +35,17 @@ bool CheckText()
 bool ArrayVsList()
 {
 	BROFILER_CATEGORY("ArrayVsList", Profiler::Color::Purple);
-	int arraySample[5000];
+	int arraySample[500];
 	std::list<int> listSample;
 	std::vector<int> vectorSample;
-	FillArray(arraySample, 5000);
-	FillList(&listSample, 5000);
-	FillVector(&vectorSample, 5000);
+	FillArray(arraySample, 500);
+	FillList(&listSample, 500);
+	FillVector(&vectorSample, 500);
+	IterateArray(arraySample, 500);
+	IterateList(&listSample, 500);
+	IterateVector(&vectorSample, 500);
+	IterateVectorIterator(&vectorSample, 500);
+
 	return false;
 }
 
@@ -66,5 +71,42 @@ void FillVector(std::vector<int> * vectorSample, int size)
 	for (int i = 0; i < size; i++)
 	{
 		vectorSample->push_back(i);
+	}
+}
+
+void IterateArray(int* arraySample, int size)
+{
+	BROFILER_CATEGORY("IterateArray", Profiler::Color::HoneyDew);
+	for (int i = 0; i < size; i++)
+	{
+		int a = arraySample[i];
+	}
+}
+
+void IterateList(std::list<int>* listSample, int size)
+{
+	BROFILER_CATEGORY("IterateList", Profiler::Color::DarkKhaki);
+	for (std::list<int>::iterator i = listSample->begin(); i != listSample->end(); ++i)
+	{
+		int a = (*i);
+	}
+
+}
+
+void IterateVector(std::vector<int>* vectorSample, int size)
+{
+	BROFILER_CATEGORY("IterateVector", Profiler::Color::Khaki);
+	for (int i = 0; i < size; i++)
+	{
+		int a = (*vectorSample)[i];
+	}
+}
+
+void IterateVectorIterator(std::vector<int>* vectorSample, int size)
+{
+	BROFILER_CATEGORY("IterateVectorIterator", Profiler::Color::Khaki);
+	for (std::vector<int>::iterator i = vectorSample->begin(); i != vectorSample->end(); ++i)
+	{
+		int a = (*i);
 	}
 }
