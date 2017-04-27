@@ -7,9 +7,22 @@
 
 #define SAMPLING_SIZE 500
 
+int arrayOfRandomSamples[SAMPLING_SIZE];
+
+void GenerateSample()
+{
+	BROFILER_CATEGORY("GenerateSample", Profiler::Color::LightYellow);
+	for (int i = 0; i < SAMPLING_SIZE; ++i)
+	{
+		arrayOfRandomSamples[i] = rand();
+		//std::cout << arrayOfRandomSamples[i] << std::endl;
+	}	
+}
+
 bool MainLoop(bool runApp)
 {
 	BROFILER_CATEGORY("MainLoop", Profiler::Color::LightYellow);
+	GenerateSample();
 	runApp = CheckText();
 	ArrayVsList();
 	FindVsIterateMap();
@@ -124,7 +137,7 @@ float FillMap(std::map<float, float>& map)
 	float a = 0.f;
 	for (unsigned int i = 0; i < SAMPLING_SIZE; ++i)
 	{
-		a = rand();
+		a = arrayOfRandomSamples[i];
 		map[a] = a;
 	}
 	return a; //Just return the last value inserted
